@@ -2,11 +2,18 @@
 ✅ Toolchain and hello world
 ✅ Dummy tasks and queue
 ✅ UART loopback 
-Wire up the LD2410 and print raw bytes
-Write the parser from the datasheet’s frame table
-LED strip on its own
+✅ Wire up the LD2410 and print raw bytes
+✅ Write the parser from the datasheet’s frame table
+✅ LED strip on its own
 Combine everything
 
+
+## 2026-11-24: LED integration
+**Goal:** Integrate the LED control with the state control task.
+**Did:** Added `ledOn()` and `ledOff()` functions, called them in the state control task based on the sensor state.
+**Observed:** LED turns on when motion is detected and off when no motion is detected.
+**Surprises / bugs:** Background noise or reflections can sometimes trigger the LED even when no actual motion is present. This highlights the need for careful tuning of the sensor's sensitivity and distance gates to minimize false positives.
+**Decisions:** LED control is now integrated with the state control, will be updated to be designed to handle false positives more gracefully based on energy thresholds to determine actual motion versus background noise.
 
 ## 2026-11-18: LC2410C sensor task
 **Goal:** Read the LC2410C sensor data and parse it into a frame.
